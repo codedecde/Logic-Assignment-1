@@ -1,0 +1,21 @@
+For Propositional Logic, implement tautology checking using Analytic Tableaux in SML.
+
+Please adhere to the following datatype for propositions.
+
+datatype Prop =  ATOM of string | NOT of Prop | AND of Prop * Prop | OR of Prop * Prop | IMP of Prop * Prop
+
+
+Given a set Γ, the expectation is to give a tableaux proof of its validity. If not, it must output the Hintikka set corresponding to any open path.
+
+There are many heuristics which can be applied to shorten the tableaux proof. For example, 
+
+1) Applying all elongation rules before branching.
+
+2) When both ψ and ψ ∨ φ are present in Γ, then branching on ψ ∨ φ is redundant.
+
+You are free to come up with your own additional heuristics. But you must document the correctness argument for the heuristics applied, along with illustrative examples. 
+
+The Grading will be relative to the most efficient implementation among the submissions. 
+
+
+
