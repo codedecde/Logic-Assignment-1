@@ -60,9 +60,9 @@ fun analytic_tableau ([],prop_list) = prop_list
 		else IMP(x,y)::left
 	end
  |analytic_tableau (ATOM(x)::xs, prop_list) = 
-	if (search(NOT(ATOM(x)) , prop_list) == true) then [] else analytic_tableau(xs, ATOM(x)::prop_list)
+	if (search(NOT(ATOM(x)) , prop_list)) then [] else analytic_tableau(xs, ATOM(x)::prop_list)
  |analytic_tableau (NOT(ATOM(x)) :: xs, prop_list) = 
-	if (search (ATOM(x) , prop_list) == true) then [] else analytic_tableau(xs, NOT(ATOM(x))::prop_list)
+	if (search (ATOM(x) , prop_list)) then [] else analytic_tableau(xs, NOT(ATOM(x))::prop_list)
 	
 		
 
