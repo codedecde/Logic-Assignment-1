@@ -37,7 +37,7 @@ fun analytic_tableau ([],atom_list) = atom_list
 	in
 		if temp = [] then [] else AND(x,y)::temp
 	end
-   |analytic_tableau (NOT(NOT(x))::xs, atom_list) = analytic_tableau(x::xs, atom_list)
+   |analytic_tableau (NOT(NOT(x))::xs, atom_list) = analytic_tableau(reorder(x::xs), atom_list)
    |analytic_tableau (NOT(OR(x,y))::xs, atom_list)  = 
 	let
 		val temp = analytic_tableau(reorder(NOT(x)::NOT(y)::xs ), atom_list)
