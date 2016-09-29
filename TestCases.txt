@@ -1,1 +1,9 @@
 [NOT( IMP( OR( AND( ATOM("p"), ATOM("q") ) , AND( NOT(ATOM("p")) , ATOM("r") ) ), AND( OR( NOT(ATOM("p")), ATOM("q") ), OR(ATOM("p"), ATOM("r") ) ) ) )]
+
+IMP(ATOM("x"), IMP(ATOM("y"), ATOM("x")))
+
+IMP( IMP(NOT(ATOM("y")), NOT(ATOM("x")) ) , IMP( IMP(NOT(ATOM("y")), ATOM("x") ), ATOM("y") ) )
+
+IMP( IMP( ATOM("x"), IMP(ATOM("y"), ATOM("z") ) ), IMP(IMP(ATOM("x"), ATOM("y")), IMP(ATOM("x"), ATOM("z") ) ) )
+
+[ATOM("x"), IMP(ATOM("x"), ATOM("y") )] , ATOM("y")
