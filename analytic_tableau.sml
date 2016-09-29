@@ -1,3 +1,4 @@
+Control.Print.printDepth := 100;
 datatype Prop =  ATOM of string | NOT of Prop | AND of Prop * Prop | OR of Prop * Prop | IMP of Prop * Prop
 
 fun search(x, []) = false
