@@ -52,13 +52,13 @@ fun analytic_tableau (gamma, phi) =
 		   |analytic_tableau_helper (NOT(NOT(x))::xs, atom_list) = analytic_tableau_helper(reorder(x,xs), atom_list)
 		   |analytic_tableau_helper (NOT(OR(x,y))::xs, atom_list)  = 
 			let
-				val temp = analytic_tableau_helper(NOT(x)::NOT(y)::xs , atom_list)
+				val temp = analytic_tableau_helper(reorder( NOT(x), reorder( NOT(y), xs) ) , atom_list)
 			in
 				if (temp = []) then [] else NOT(OR(x,y))::temp
 			end
 		   |analytic_tableau_helper (NOT(IMP(x,y))::xs, atom_list) = 
 			let
-				val temp = analytic_tableau_helper(NOT(y)::reorder(x,xs), atom_list) 
+				val temp = analytic_tableau_helper(reorder(NOT(y),reorder(x,xs)), atom_list) 
 			in 
 				if (temp = []) then [] else NOT(IMP(x,y))::temp
 			end
@@ -76,11 +76,11 @@ fun analytic_tableau (gamma, phi) =
 			end   
 		   |analytic_tableau_helper (NOT(AND(x,y)) :: xs, atom_list) = 
 			let
-				val left = analytic_tableau_helper(NOT(x)::xs, atom_list)
+				val left = analytic_tableau_helper(reorder(NOT(x),xs) , atom_list)
 			in
 				if (left = []) then
 					let 
-						val right = analytic_tableau_helper(NOT(y)::xs, atom_list)
+						val right = analytic_tableau_helper( reorder(NOT(y),xs), atom_list)
 					in
 						if (right = []) then [] else NOT(AND(x,y))::right
 					end
@@ -88,7 +88,7 @@ fun analytic_tableau (gamma, phi) =
 			end
 		  |analytic_tableau_helper (IMP(x,y) :: xs, atom_list) = 
 			let
-				val left = analytic_tableau_helper(NOT(x) :: xs, atom_list)
+				val left = analytic_tableau_helper(reorder(NOT(x), xs), atom_list)
 			in
 				if (left = []) then
 					let
